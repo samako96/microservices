@@ -9,8 +9,7 @@ services:
 addons:
   sonarcloud:
     organization: "rolandogdp" # the key of the org you chose at step #3
-    token:
-    secure: "sGbeW42Rm9WB8sLbsCvNJkhad0enYmBpX7un+1U5npu3WmaipF4xntMMp0OluOBKPaaZSWYtXt3+QqdbLjFEprxRorXRBXFB4pSNfRN5uoooFb2Ggbd2vYkVTvBfayyzVNBaQbd4VTffwfFEMWvrUlGolHHfwV4z/lxBENr0fLKxGORKA3cM7Bzi2U1I8LMGelv0Vk4L6jgDKxPKw1jYTvtz/rOmws9UQqhkuZ1X46MDplIYXlkJh6w+j2H7DSv+Dq7WGb16QnWwAhKVLpwEk+pjAz+7oD6y5irYT3IWvyoSo0aMJoB8arRTLZPl80seXWVcfLdSs0LM63EgSl67KjMZ6wRk3ep5VpBOiOkXrhvxTpFDIJhTXX5kzb4gXWXSktRzmWJEFWu3QIvYwcDq24apRsbTYnPA+ysqMjR5C7jHhSiRTY/M4NE1VoDHy8+1mdOpA7S2/oojKm25wUVMAuZ6F6vVf45ENKVyiFlcqSUn7cIo32PMBcpHIOw+NCfnGFDDp974j04VqXG870TBpb5UZJg+id9BNicUfhAkn1RNJuMelSJuTbAnZL/DXJ1VSxzl5y2VQNPvHtl6sIEnarTSEn2+RiLBlPO5bQu6TKWY96VtyQQvIZHEnOpYfIYpQFoIcrYQg+MGPl5Ow9Ub0PjGGwLGiVbL/pa5Mm1z8Fk="
+    
 cache:
     directories:
       - .autoconf
