@@ -1,52 +1,56 @@
 language: java
+
 env:
-  matrix:
   - NODE_VERSION="12.13.1"
-  global:
-    secure: FEGvjhIOQJOSEEg4H0zmo6Chedl61M8kv8p0wzryAhyKrA1OzQ6VdWBAT6vBXATFAbwY+Awl2xWNMnjo4f+Mo446QcqlEr6jnXzbGPVD3WwcQWWT+Qg4P84AE6AGFhZtVo5jEwl/g5SItdEnsRVxV57QQMJX2fu/q4eQpHJ6HSxGu1BD0tGbl4vvBA8oYLr+vIh6u+e2Ul31zUNm4KKBLUE5aoEyctuMPxgVf87ua3c6O5k6anKfrpLq5SI9D/CxcyMHGPuYlScUdLYujPFGDfRQdXQo8iTNVGyMqMQnGGjS4tXMpa9Ebtqjs+6Cp7ebm+q0MQjfC9wu+hQMfj/GaGHjLfTxnkdenIW1q2Ja3MejCy4YQVEQ8ug9ZjKmkYw0xXOC57prHdhCOXELFXFulVXfdMHNatjJf2zRCR3WN6fEsjiuLMSrESwzkDKwB36GeOurYufiiGyS4GWi9KgKJTj5OsRrhAf8OsoLQEgmuJMeEwh0Q13r839kVDU5Ryu4Z+8Xp1JPKQb2xd7hFPxcv5t7HFEnfhn4cGohtC+nsH4t4d1cuizKWgif7GWO4if2NpZL8cbxa+LOqp0fWea6bQpm60CW1tHYkXQTPh8MnOpalwEn+jngM55RpAwbTYfsNGucsHqezrqoivnlp0EN3gX1jc8kimJehu4t2rQDJoo=
+  
 services:
-- docker
+  - docker
+
 addons:
   sonarcloud:
-    organization: rolandogdp
+    organization: "rolandogdp" # the key of the org you chose at step #3
     token:
-      secure: FEGvjhIOQJOSEEg4H0zmo6Chedl61M8kv8p0wzryAhyKrA1OzQ6VdWBAT6vBXATFAbwY+Awl2xWNMnjo4f+Mo446QcqlEr6jnXzbGPVD3WwcQWWT+Qg4P84AE6AGFhZtVo5jEwl/g5SItdEnsRVxV57QQMJX2fu/q4eQpHJ6HSxGu1BD0tGbl4vvBA8oYLr+vIh6u+e2Ul31zUNm4KKBLUE5aoEyctuMPxgVf87ua3c6O5k6anKfrpLq5SI9D/CxcyMHGPuYlScUdLYujPFGDfRQdXQo8iTNVGyMqMQnGGjS4tXMpa9Ebtqjs+6Cp7ebm+q0MQjfC9wu+hQMfj/GaGHjLfTxnkdenIW1q2Ja3MejCy4YQVEQ8ug9ZjKmkYw0xXOC57prHdhCOXELFXFulVXfdMHNatjJf2zRCR3WN6fEsjiuLMSrESwzkDKwB36GeOurYufiiGyS4GWi9KgKJTj5OsRrhAf8OsoLQEgmuJMeEwh0Q13r839kVDU5Ryu4Z+8Xp1JPKQb2xd7hFPxcv5t7HFEnfhn4cGohtC+nsH4t4d1cuizKWgif7GWO4if2NpZL8cbxa+LOqp0fWea6bQpm60CW1tHYkXQTPh8MnOpalwEn+jngM55RpAwbTYfsNGucsHqezrqoivnlp0EN3gX1jc8kimJehu4t2rQDJoo=
+      secure: "PdjeeWqj2MPac6/raJGqgsho8z1I0xxa6+euIjoHuXnikXy4lgPRYw8fTNzYle974cDaTaapCowQtrj8avz7SWpGPsEvH32IyeXCUSuSBpjB0GY2je+4Wjf/6eJJcR6A+Lsnn3PU2MrCimi6H2A2aKqkrJlQ5dj8Z89FqSYx+Fxg5lHyEsDiBStbWm4X9fodUf0JhafcdEjXCi7UaryUvr/vSWSpaWn/FekbXI/BYpcYfI2W/jTY/je+565n9KmqyLUYXV+TDnPDuCNPDmT4nvn+IIGpIHbpbd0Y/8TUw8uQQoT0hD0U8IIHbVR8yhj8lZu1KmLR587e8O/fmO2Tf+ptyiaMNenRpCAqaxHp2yQk46Nb1qBcWZdye3HwSU9mDlz9nXpiwLt8yFoPgjqx88b9RIDFGt1HrHHeLYSmZ7rdHRZwRGBpmPW3HE2SOmQ7NayLNgXyX9CWU3ixmZLa2Fhc+zewYBRcWMfNWIfRVkLqPKp12iFWXNy2fLQCxkwYTcqhAfFQKU9M/UlTxm05QYHJJ2WG1JvT74iFkAD7X9w018FBN9c3az8T3q80aY+MEvM3WqlwsT5dGY+IdogOU4gPy1n8NaNdJuVZqoPQRdtw/PAcE4YVG2u3/hkc+2dumoWTPtp/Js5DgcKXQYNi20jVObnzlgwpb+nhH++JM18="
+    
 cache:
-  directories:
-  - ".autoconf"
-  - "$HOME/.m2"
-  - node_modules
+    directories:
+      - .autoconf
+      - $HOME/.m2
+      - node_modules
+
 jobs:
   include:
-  - stage: Prepare
-    script:
-    - nvm install $NODE_VERSION
-    - mvn install -N -DskipTests=true -Dmaven.javadoc.skip=true -B -V
-  - stage: Build
-    script:
-    - mvn install -Ppackage-docker-image
-    - echo "$DOCKER_USERNAME"
-    - echo "$DOCKER_PASSWORD" | docker login --username "$DOCKER_USERNAME" --password-stdin
-    - docker tag unige/api-gateway rolandock/api-gateway:latest
-    - docker tag unige/regulatory-service rolandock/regulatory-service:latest
-    - docker tag unige/valuation-service rolandock/valuation-service:latest
-    - docker tag unige/instrument-service rolandock/instrument-service:latest
-    - docker tag unige/counterparty-service rolandock/counterparty-service:latest
-    - docker push rolandock/api-gateway:latest
-    - docker push rolandock/regulatory-service:latest
-    - docker push rolandock/valuation-service:latest
-    - docker push rolandock/instrument-service:latest
-    - docker push rolandock/counterparty-service:latest
-    - mvn sonar:sonar -Dsonar.projectKey=rolandogdp_microservices
-  - stage: Build
-    script:
-    - cd web-ui
-    - pwd
-    - npm -v
-    - npm install
-    - npm update
-    - npm run-script build --prod
-    - docker build -t unige/web-ui .
-    - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-    - docker tag unige/web-ui rolandock/web-ui:latest
-    - docker push rolandock/web-ui:latest
+    - stage: Prepare
+      script:
+      - nvm install $NODE_VERSION
+      - mvn install -N -DskipTests=true -Dmaven.javadoc.skip=true -B -V
+    - stage : Build
+      script:
+      - mvn install -Ppackage-docker-image  
+      - echo "$DOCKER_USERNAME"
+      - echo "$DOCKER_PASSWORD" | docker login --username "$DOCKER_USERNAME" --password-stdin
+      - docker tag unige/api-gateway rolandock/api-gateway:latest
+      - docker tag unige/regulatory-service rolandock/regulatory-service:latest
+      - docker tag unige/valuation-service rolandock/valuation-service:latest
+      - docker tag unige/instrument-service rolandock/instrument-service:latest
+      - docker tag unige/counterparty-service rolandock/counterparty-service:latest     
+      - docker push rolandock/api-gateway:latest
+      - docker push rolandock/regulatory-service:latest
+      - docker push rolandock/valuation-service:latest
+      - docker push rolandock/instrument-service:latest
+      - docker push rolandock/counterparty-service:latest
+#      - mvn sonar:sonar -Dsonar.projectKey=rolandogdp_microservices
+      #- mvn sonar:sonar -Dsonar.projectKey=rolandogdp_microservices -Dsonar.organization=rolandogdp -Dsonar.host.url=https://sonarcloud.io
+      - sonar-scanner
+    - stage : Build
+      script:
+      - cd web-ui
+      - pwd
+      - npm -v
+      - npm install
+      - npm update
+      - npm run-script build --prod
+      - docker build -t unige/web-ui .
+      - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin      
+      - docker tag unige/web-ui rolandock/web-ui:latest      
+      - docker push rolandock/web-ui:latest
