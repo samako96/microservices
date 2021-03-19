@@ -40,7 +40,7 @@ jobs:
       - docker push rolandock/valuation-service:latest
       - docker push rolandock/instrument-service:latest
       - docker push rolandock/counterparty-service:latest
-      - sonar:sonar -Dsonar.projectKey=rolandogdp_microservices
+      - mvn sonar:sonar -Dsonar.projectKey=rolandogdp_microservices
    #   - mvn sonar:sonar -Dsonar.projectKey=rolandogdp_microservices -Dsonar.organization=rolandogdp -Dsonar.host.url=https://sonarcloud.io     
     
     - stage : Build
