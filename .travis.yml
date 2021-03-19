@@ -9,6 +9,8 @@ services:
 addons:
   sonarcloud:
     organization: "rolandogdp" # the key of the org you chose at step #3
+    token:
+      secure: "PUpGZO/Ai+fT7cm9iN2RCSNR1beCxe5TnQimMnDkviiEFpBBs4/Ze8e27C0a0l3g46viBK7F2pHUDnhnfym2w5FyjhsmaHSvmp9mKVOkbVcAkH4E1zBzvoZZHh2ez/ukj35pH0ifVRoqXJoFlX63sBFe3R2WRfz2Nb+QiARuJwiIuVCIVmHL8GeQSVjGlBJN2TDPboFC1+sAfGqpKXZQjOY7tmY90AX1WYE2lHkOxV89Qcgi7L+it/56/kxlCXvlWFXGGeRpzxPWagHYPc4iZeUTVRH46PMT0PDdkaVNb4mJh8j7CwW3tWbEJFGAd3lX9iRSBySQ30qfJDY3s/MFG6RSmMXBbjMEc749eh7MOohNy+gYCWcyWNUpCKxTmAJOpMxZjvs75iwocnclKNLeCzP1yRHAh8xHGdgJnUbLqOO06YCo75+Qw82mRppX0CFclvtJJCB4MiWLepm7fY4ywTLcnwkNClxykAUewnXQAFeb/pmHMOazvZz7VbETlZU2BSKeAgRqQ4fGzvsKkRB+fkg7HVnHgkbkLW9YHoXv4/jD57OIHyU0bwdg2RYGJqqQ8dV/ycApTEoi+eGcR9gpa5zZwiBE52JyyHWH/IEd8+av+/8DjEG05USLH5xSwsjWJmUZAaHPmgaXaX4xGwMWwl2p1vwOzRvJRdj1QAlqr5Q="
     
 cache:
     directories:
@@ -24,6 +26,7 @@ jobs:
       - mvn install -N -DskipTests=true -Dmaven.javadoc.skip=true -B -V
     - stage : Build
       script:
+      
       - mvn install -Ppackage-docker-image  
       - echo "$DOCKER_USERNAME"
       - echo "$DOCKER_PASSWORD" | docker login --username "$DOCKER_USERNAME" --password-stdin
@@ -37,7 +40,8 @@ jobs:
       - docker push rolandock/valuation-service:latest
       - docker push rolandock/instrument-service:latest
       - docker push rolandock/counterparty-service:latest
-      - mvn sonar:sonar -Dsonar.projectKey=rolandogdp_microservices -Dsonar.organization=rolandogdp -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=     
+      - mvn sonar:sonar -Dsonar.projectKey=rolandogdp_microservices -Dsonar.organization=rolandogdp -Dsonar.host.url=https://sonarcloud.io     
+    
     - stage : Build
       script:
       - cd web-ui
