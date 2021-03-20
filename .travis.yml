@@ -10,8 +10,8 @@ addons:
   sonarcloud:
     organization: "rolandogdp" # the key of the org you chose at step #3
     token:
-      secure: "PdjeeWqj2MPac6/raJGqgsho8z1I0xxa6+euIjoHuXnikXy4lgPRYw8fTNzYle974cDaTaapCowQtrj8avz7SWpGPsEvH32IyeXCUSuSBpjB0GY2je+4Wjf/6eJJcR6A+Lsnn3PU2MrCimi6H2A2aKqkrJlQ5dj8Z89FqSYx+Fxg5lHyEsDiBStbWm4X9fodUf0JhafcdEjXCi7UaryUvr/vSWSpaWn/FekbXI/BYpcYfI2W/jTY/je+565n9KmqyLUYXV+TDnPDuCNPDmT4nvn+IIGpIHbpbd0Y/8TUw8uQQoT0hD0U8IIHbVR8yhj8lZu1KmLR587e8O/fmO2Tf+ptyiaMNenRpCAqaxHp2yQk46Nb1qBcWZdye3HwSU9mDlz9nXpiwLt8yFoPgjqx88b9RIDFGt1HrHHeLYSmZ7rdHRZwRGBpmPW3HE2SOmQ7NayLNgXyX9CWU3ixmZLa2Fhc+zewYBRcWMfNWIfRVkLqPKp12iFWXNy2fLQCxkwYTcqhAfFQKU9M/UlTxm05QYHJJ2WG1JvT74iFkAD7X9w018FBN9c3az8T3q80aY+MEvM3WqlwsT5dGY+IdogOU4gPy1n8NaNdJuVZqoPQRdtw/PAcE4YVG2u3/hkc+2dumoWTPtp/Js5DgcKXQYNi20jVObnzlgwpb+nhH++JM18="
-    
+      secure: "aLT9Pp5lNdR4CGAgaPIZFtAC/y5Dkp0sZvrm+6kkkdyfSzgXgXMJmbIx66rNM/7P99Kc+4swDWujUSth6Pur8cdOnoBlt2ibtPU8+x8IDacULroPlkl9JH+r7KpJoVRBMWIbukoBjZdljcWgE6lJSSTAWRrZcq3uAgDZGcP2VANc2QOdith2gUiLUVWgPgbfGIIHPi5tZMyrGNXDsqkUHHY5xlu1d7icc67HiMox0cNAn4akdsAFpUtI9oH06kwmDr9UEbnbPv/HRspW6MnxnPCOuIkmzPFSOUC9F7mVAyd2BvBUZNWWOjsTNsQVgo3OuwWndPEcrCqqFPkJO0x4PoQ3JoVHp+ZJtoPeRaU5l7VqxDHCegz3uuvlLRZe+K9i2N6HiElHCfxGiwMwQAV8umnSH8Xrum+5no59+Wrm9amiup8T5vGdgjNeeqNRCgA4b/34pM+JYh+AOU8Riyg5iOJqWzNMkGuIrsqaODpSJvwzyABv70cbw+hqFi76U5QCOYjKIwAeG2qJITHwj+zDsWaieJK5lx82q3rNHkQUA8hikP5MnamBI6VxHh5EtdeM4rGrHihIueJHR9H2W69zjie1MmfDerNCR+2kq5zGASYHPFBN9oZIhpkIE0psx5AJPZh8+/NyccjURSAC5z60AviiL52EHXkzcNARiSwbZrg="
+
 cache:
     directories:
       - .autoconf
@@ -39,6 +39,7 @@ jobs:
       - docker push rolandock/valuation-service:latest
       - docker push rolandock/instrument-service:latest
       - docker push rolandock/counterparty-service:latest
+      - mvn sonar:sonar -Dsonar.projectKey=rolandogdp_microservices -Dsonar.organization=rolandogdp -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=$SONAR_TOKEN
 #      - mvn sonar:sonar -Dsonar.projectKey=rolandogdp_microservices
       #- mvn sonar:sonar -Dsonar.projectKey=rolandogdp_microservices -Dsonar.organization=rolandogdp -Dsonar.host.url=https://sonarcloud.io
       - sonar-scanner
