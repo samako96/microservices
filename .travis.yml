@@ -39,10 +39,12 @@ jobs:
       - docker push rolandock/valuation-service:latest
       - docker push rolandock/instrument-service:latest
       - docker push rolandock/counterparty-service:latest
-      - mvn sonar:sonar -Dsonar.projectKey=rolandogdp_microservices -Dsonar.organization=rolandogdp -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=$SONAR_TOKEN
+#      - mvn sonar:sonar -Dsonar.projectKey=rolandogdp_microservices -Dsonar.organization=rolandogdp -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=$SONAR_TOKEN
 #      - mvn sonar:sonar -Dsonar.projectKey=rolandogdp_microservices
-      #- mvn sonar:sonar -Dsonar.projectKey=rolandogdp_microservices -Dsonar.organization=rolandogdp -Dsonar.host.url=https://sonarcloud.io
-      - sonar-scanner
+#      - mvn sonar:sonar -Dsonar.projectKey=rolandogdp_microservices -Dsonar.organization=rolandogdp -Dsonar.host.url=https://sonarcloud.io 
+
+      - mvn sonar:sonar -Dsonar.projectKey=rolandogdp_microservices -Dsonar.organization=rolandogdp -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=b5d6d155dcc05d3cbeaa1956abc884c289c2242e     
+ #     - sonar-scanner
     - stage : Build
       script:
       - cd web-ui
