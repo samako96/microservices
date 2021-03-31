@@ -12,9 +12,9 @@
 	<packaging>pom</packaging>
 
 	<scm>
-		<url>https://github.com/rolandogdp/microservices</url>
-		<connection>scm:git:git@github.com/rolandogdp/microservices.git</connection>
-		<developerConnection>scm:git:git@github.com/rolandogdp/microservices</developerConnection>
+		<url>https://github.com/samako96/microservices</url>
+		<connection>scm:git:git@github.com/samako96/microservices.git</connection>
+		<developerConnection>scm:git:git@github.com/samako96/microservices</developerConnection>
 	</scm>
 
 	<properties>
