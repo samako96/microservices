@@ -8,10 +8,7 @@ services:
 
 addons:
   sonarcloud:
-    organization: "rolandogdp" # the key of the org you chose at step #3
-    token:
-      secure: "aLT9Pp5lNdR4CGAgaPIZFtAC/y5Dkp0sZvrm+6kkkdyfSzgXgXMJmbIx66rNM/7P99Kc+4swDWujUSth6Pur8cdOnoBlt2ibtPU8+x8IDacULroPlkl9JH+r7KpJoVRBMWIbukoBjZdljcWgE6lJSSTAWRrZcq3uAgDZGcP2VANc2QOdith2gUiLUVWgPgbfGIIHPi5tZMyrGNXDsqkUHHY5xlu1d7icc67HiMox0cNAn4akdsAFpUtI9oH06kwmDr9UEbnbPv/HRspW6MnxnPCOuIkmzPFSOUC9F7mVAyd2BvBUZNWWOjsTNsQVgo3OuwWndPEcrCqqFPkJO0x4PoQ3JoVHp+ZJtoPeRaU5l7VqxDHCegz3uuvlLRZe+K9i2N6HiElHCfxGiwMwQAV8umnSH8Xrum+5no59+Wrm9amiup8T5vGdgjNeeqNRCgA4b/34pM+JYh+AOU8Riyg5iOJqWzNMkGuIrsqaODpSJvwzyABv70cbw+hqFi76U5QCOYjKIwAeG2qJITHwj+zDsWaieJK5lx82q3rNHkQUA8hikP5MnamBI6VxHh5EtdeM4rGrHihIueJHR9H2W69zjie1MmfDerNCR+2kq5zGASYHPFBN9oZIhpkIE0psx5AJPZh8+/NyccjURSAC5z60AviiL52EHXkzcNARiSwbZrg="
-
+    organization: "nexsin" # the key of the org you chose at step #3
 cache:
     directories:
       - .autoconf
@@ -29,21 +26,21 @@ jobs:
       - mvn install -Ppackage-docker-image  
       - echo "$DOCKER_USERNAME"
       - echo "$DOCKER_PASSWORD" | docker login --username "$DOCKER_USERNAME" --password-stdin
-      - docker tag unige/api-gateway rolandock/api-gateway:latest
-      - docker tag unige/regulatory-service rolandock/regulatory-service:latest
-      - docker tag unige/valuation-service rolandock/valuation-service:latest
-      - docker tag unige/instrument-service rolandock/instrument-service:latest
-      - docker tag unige/counterparty-service rolandock/counterparty-service:latest     
-      - docker push rolandock/api-gateway:latest
-      - docker push rolandock/regulatory-service:latest
-      - docker push rolandock/valuation-service:latest
-      - docker push rolandock/instrument-service:latest
-      - docker push rolandock/counterparty-service:latest
+      - docker tag unige/api-gateway nexsin/api-gateway:latest
+      - docker tag unige/regulatory-service nexsin/regulatory-service:latest
+      - docker tag unige/valuation-service nexsin/valuation-service:latest
+      - docker tag unige/instrument-service nexsin/instrument-service:latest
+      - docker tag unige/counterparty-service nexsin/counterparty-service:latest     
+      - docker push nexsin/api-gateway:latest
+      - docker push nexsin/regulatory-service:latest
+      - docker push nexsin/valuation-service:latest
+      - docker push nexsin/instrument-service:latest
+      - docker push nexsin/counterparty-service:latest
 #      - mvn sonar:sonar -Dsonar.projectKey=rolandogdp_microservices -Dsonar.organization=rolandogdp -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=$SONAR_TOKEN
 #      - mvn sonar:sonar -Dsonar.projectKey=rolandogdp_microservices
 #      - mvn sonar:sonar -Dsonar.projectKey=rolandogdp_microservices -Dsonar.organization=rolandogdp -Dsonar.host.url=https://sonarcloud.io 
 
-      - mvn sonar:sonar -Dsonar.projectKey=rolandogdp_microservices -Dsonar.organization=rolandogdp -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=b5d6d155dcc05d3cbeaa1956abc884c289c2242e     
+      - mvn sonar:sonar -Dsonar.projectKey=samako96_microservices -Dsonar.organization=samako96 -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=2a08e0c77c224f06d27c7a9dbd34edd78467cb8d     
  #     - sonar-scanner
     - stage : Build
       script:
@@ -55,5 +52,5 @@ jobs:
       - npm run-script build --prod
       - docker build -t unige/web-ui .
       - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin      
-      - docker tag unige/web-ui rolandock/web-ui:latest      
-      - docker push rolandock/web-ui:latest
+      - docker tag unige/web-ui nexsin/web-ui:latest      
+      - docker push nexsin/web-ui:latest
